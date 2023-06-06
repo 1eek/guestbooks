@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.prg">
+<head>
+  <title>留言簿</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #22fff8;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    form {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box: 0 0 10px rgba(0,0,0,0.2);
+      margin: 0 auto;
+      max-width: 500px;
+      margin-bottom: 20px;
+
+    }
+
+    input[type="text"], textarea {
+      
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 100%;
+      margin-bottom: 20px ;
+      font-size: 16px;
+      color: #333;
+    }
+    input[type="submit"] {
+      background-color: #333;
+      color: #fff;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+
+    }
+    input[type="submit"]:hover {
+      background-color: #666;
+    }
+    .comment {
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      margin-bottom: 20px;
+    }
+    .comment p {
+      margin: 0;
+      font-size: 16px;
+      color: #333;
+    }
+    .comment .name {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    .comment .date {
+      font-style: italic;
+      color: #666;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+<h1>留言簿</h1>
+<form th:action="@{/main}" method="post">
+
+  <textarea id="message" name="content" rows="5" required>
+
+  </textarea>
+
+  <input type="submit" value="提交">
+</form>
+
+<div class="comment" th:each="ly:${lys}">
+  <p class="name" th:text="${ly.userName}"></p>
+  <p class="date" th:text="${ly.date}">2023年6月5日</p>
+  <p th:text="${ly.content}">这是一条留言。</p>
+</div>
+
+</body>
+</html>
